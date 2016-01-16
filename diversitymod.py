@@ -13,7 +13,7 @@ from subprocess import call
 ##
 ##Constants
 ##
-items_xml = ET.parse('diversitymod files/resources/items.xml')
+items_xml = ET.parse('resources/items.xml')
 
 items_info = items_xml.getroot()
 
@@ -72,8 +72,8 @@ def newRandomSeed():
 	
 def installDiversityMod():
 	
-	item_pools_xml = ET.parse('diversitymod files/resources/itempools.xml')
-	players_xml = ET.parse('diversitymod files/resources/players.xml')
+	item_pools_xml = ET.parse('resources/itempools.xml')
+	players_xml = ET.parse('resources/players.xml')
 	item_pools_info = item_pools_xml.getroot()
 	players_info = players_xml.getroot()
 	
@@ -168,7 +168,7 @@ def installDiversityMod():
 	if os.path.isfile(resourcepath + '/players.xml'):
 		os.remove(resourcepath + '/players.xml')
 
-	shutil.copy(currentpath + '/diversitymod files/resources/players.xml', resourcepath + '/players.xml')
+	shutil.copy(currentpath + '/resources/players.xml', resourcepath + '/players.xml')
 	counter = 0
 	for player in players_info:
 		if player.attrib['name'] == 'Black Judas' or player.attrib['name'] == 'Lazarus II':
@@ -193,13 +193,13 @@ def installDiversityMod():
 	# create gfx folder structure
 	os.makedirs(resourcepath + '/gfx/ui/main menu/')
 	# open menu graphics & write the seed on them
-	characterimg = Image.open(currentpath + "/diversitymod files/resources/charactermenu.png")
-	titleimg = Image.open(currentpath + "/diversitymod files/resources/titlemenu.png")
-	splashimg = Image.open(currentpath + "/diversitymod files/resources/splashes.png")
+	characterimg = Image.open(currentpath + "/resources/charactermenu.png")
+	titleimg = Image.open(currentpath + "/resources/titlemenu.png")
+	splashimg = Image.open(currentpath + "/resources/splashes.png")
 	characterdraw = ImageDraw.Draw(characterimg)
 	titledraw = ImageDraw.Draw(titleimg)
-	smallfont = ImageFont.truetype(os.getcwd() + "/diversitymod files/images/comicbd.ttf", 10)
-	largefont = ImageFont.truetype(os.getcwd() + "/diversitymod files/images/comicbd.ttf", 16)
+	smallfont = ImageFont.truetype(os.getcwd() + "/fonts/comicbd.ttf", 10)
+	largefont = ImageFont.truetype(os.getcwd() + "/fonts/comicbd.ttf", 16)
 	w, h = characterdraw.textsize("Diversity Mod v" + str(version) + " Seed", font = smallfont)
 	w2, h2 = characterdraw.textsize(str(entryseed.get()), font = largefont)
 	w3, h3 = characterdraw.textsize("(random)", font = smallfont)
@@ -216,7 +216,7 @@ def installDiversityMod():
 	splashimg.save(resourcepath + '/gfx/ui/main menu/splashes.png')
 	
 	#Copy itempools.xml to resources and remove, soy/libra from pools when present in the start, and blood rights from pools when Isaac's heart is present
-	shutil.copyfile(currentpath + '/diversitymod files/resources/itempools.xml', resourcepath + '/itempools.xml')
+	shutil.copyfile(currentpath + '/resources/itempools.xml', resourcepath + '/itempools.xml')
 	for x in range(0,3):
 		if(itemIDs[x] == 330 or itemIDs[x] == 304):
 			delItemPool(330)
@@ -226,17 +226,17 @@ def installDiversityMod():
 	
 	item_pools_xml.write(resourcepath + '/itempools.xml')
 	# clear out the files
-	shutil.copyfile(currentpath + '/diversitymod files/resources/items.xml', resourcepath + '/items.xml')
+	shutil.copyfile(currentpath + '/resources/items.xml', resourcepath + '/items.xml')
 	
 	os.makedirs(resourcepath + '/rooms/')
-	shutil.copyfile(currentpath + '/diversitymod files/resources/rooms/00.special rooms.stb', resourcepath + '/rooms/00.special rooms.stb')
-	shutil.copyfile(currentpath + '/diversitymod files/resources/rooms/04.catacombs.stb', resourcepath + '/rooms/04.catacombs.stb')
-	shutil.copyfile(currentpath + '/diversitymod files/resources/rooms/05.depths.stb', resourcepath + '/rooms/05.depths.stb')
-	shutil.copyfile(currentpath + '/diversitymod files/resources/rooms/06.necropolis.stb', resourcepath + '/rooms/06.necropolis.stb')
-	shutil.copyfile(currentpath + '/diversitymod files/resources/rooms/07.womb.stb', resourcepath + '/rooms/07.womb.stb')
-	shutil.copyfile(currentpath + '/diversitymod files/resources/rooms/08.utero.stb', resourcepath + '/rooms/08.utero.stb')
-	shutil.copyfile(currentpath + '/diversitymod files/resources/rooms/09.sheol.stb', resourcepath + '/rooms/09.sheol.stb')
-	shutil.copyfile(currentpath + '/diversitymod files/resources/rooms/12.chest.stb', resourcepath + '/rooms/12.chest.stb')
+	shutil.copyfile(currentpath + '/resources/rooms/00.special rooms.stb', resourcepath + '/rooms/00.special rooms.stb')
+	shutil.copyfile(currentpath + '/resources/rooms/04.catacombs.stb', resourcepath + '/rooms/04.catacombs.stb')
+	shutil.copyfile(currentpath + '/resources/rooms/05.depths.stb', resourcepath + '/rooms/05.depths.stb')
+	shutil.copyfile(currentpath + '/resources/rooms/06.necropolis.stb', resourcepath + '/rooms/06.necropolis.stb')
+	shutil.copyfile(currentpath + '/resources/rooms/07.womb.stb', resourcepath + '/rooms/07.womb.stb')
+	shutil.copyfile(currentpath + '/resources/rooms/08.utero.stb', resourcepath + '/rooms/08.utero.stb')
+	shutil.copyfile(currentpath + '/resources/rooms/09.sheol.stb', resourcepath + '/rooms/09.sheol.stb')
+	shutil.copyfile(currentpath + '/resources/rooms/12.chest.stb', resourcepath + '/rooms/12.chest.stb')
 
 	# update gui stuffs
 	dm.update_idletasks()
@@ -311,7 +311,7 @@ entryseed.trace("w", checkInstalled)
 feedback = StringVar()
 d6start = BooleanVar()
 # just the gui icon and title
-dm.iconbitmap("diversitymod files/images/poop.ico")
+dm.iconbitmap("images/poop.ico")
 dm.title("Diversity Mod v" + str(version))
 
 # import options
@@ -380,12 +380,12 @@ sentry.bind("<Control-a>", selectall)
 #sentry.selectall(self, "<Control-a>")
 sentry.grid(row = 1, padx = 7, columnspan = 2, pady = 5)
 # button to choose a new random seed
-dmrandimage = Image.open("diversitymod files/images/d100.png")
+dmrandimage = Image.open("images/d100.png")
 dmrandicon = ImageTk.PhotoImage(dmrandimage)
 Button(dmbox, image = dmrandicon, font = "font 12", command = newRandomSeed).grid(row = 0, column = 1, padx = 7, sticky = E)
 
 # button to install mod and restart Rebirth
-dmiconimage = Image.open("diversitymod files/images/rainbow.png")
+dmiconimage = Image.open("images/rainbow.png")
 dmicon = ImageTk.PhotoImage(dmiconimage)
 Button(dm, image = dmicon, text = '   Start Diversity Mod   ', compound = "left", command = installDiversityMod, font = "font 16").grid(row = 3, pady = 7, columnspan = 2)
 
