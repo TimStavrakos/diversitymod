@@ -53,6 +53,18 @@ Known Issues
 * The program is not currently compatible with Linux/Mac.
 * When the program closes unexpectedly, it leaves mod files installed. To fix, see: http://pastebin.com/mfreKXXT
 
+Setup
+-----
+Use pyinstaller: https://github.com/pyinstaller/pyinstaller/releases
+
+Put pyinstaller.exe and pyinstaller.py in diversity mod directory.
+
+Open directory in console.
+
+In console, type: "pyinstaller.exe --onefile --windowed diversitymod.py"
+
+Run seup.py.
+
 
 Random Passive Starting Items
 -----------------------------

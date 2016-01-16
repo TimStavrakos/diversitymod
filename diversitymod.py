@@ -70,14 +70,14 @@ def newRandomSeed():
     seed()
     seedIsRNG = ''.join(choice(ascii_uppercase + digits) for _ in range(6))
     entryseed.set(seedIsRNG)
-    
+
 def installDiversityMod():
-    
+
     item_pools_xml = ET.parse('resources/itempools.xml')
     players_xml = ET.parse('resources/players.xml')
     item_pools_info = item_pools_xml.getroot()
     players_info = players_xml.getroot()
-    
+
     # trim the whitespace on the string if there is any
     s = entryseed.get()
     entryseed.set(s.strip().encode('ascii','replace'))
@@ -88,10 +88,10 @@ def installDiversityMod():
     global dmseed
     dmseed = entryseed.get()
     seed(crc32(dmseed))
-    
+
     # set background to indicate that current entry is active
     sentry.configure(bg = '#d8fbf8')
-    
+
     # valid_items is the list of all passive items in the game EXCLUDING the 22 on the no-list
     valid_items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 17, 18, 19, 20, 21, 27, 28, 32, 46, 48, 50, 51, 52, 53, 54, 55, 57, 60, 62, 63, 64, 67, 68, 69, 
     70, 71, 72, 73, 74, 75, 76, 79, 80, 81, 82, 87, 88, 89, 90, 91, 94, 95, 96, 98, 99, 100, 101, 103, 104, 106, 108, 109, 110, 112, 113, 114, 115, 116, 117, 118, 
@@ -103,11 +103,11 @@ def installDiversityMod():
     332, 333, 335, 336, 337, 340, 341, 342, 343, 345, 350, 353, 354, 356, 358, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374, 375, 
     376, 377, 378, 379, 380, 381, 384, 385, 387, 388, 389, 390, 391, 392, 393, 394, 395, 397, 398, 399, 400, 401, 402, 403, 404, 405, 407, 408, 409, 410, 411, 412, 
     413, 414, 415, 416, 417, 418, 420, 423, 424, 425, 426, 429, 430, 431, 432, 433, 435, 436, 438, 440]
-    
+
     # random permutation of valid items list
     itemIDs = list(valid_items)
     shuffle(itemIDs)
-    
+
     spaceitem = ['105,','45,', '', '34,', '36,', '', '', '', '', '', '284,', '357,', '349,']
     if d6start.get():
         spaceitem = ['105,','105,', '105,', '105,', '105,', '105,', '105,', '105,', '105,', '', '105,', '105,', '105,']
@@ -124,7 +124,7 @@ def installDiversityMod():
                 os.unlink(os.path.join(resourcepath, resourcefile))
             elif os.path.isdir(os.path.join(resourcepath, resourcefile)):
                 shutil.rmtree(os.path.join(resourcepath, resourcefile))
-    
+
     # write players file
     if os.path.isfile(resourcepath + '/players.xml'):
         os.remove(resourcepath + '/players.xml')
@@ -138,18 +138,18 @@ def installDiversityMod():
             defaultItems = str(player.get('items'))
             player.set('items', str(itemIDs[0]) + ', ' + str(itemIDs[1]) + ', ' + str(itemIDs[2]))
             counter += 1
-        
+
         else:
             defaultItems = str(player.get('items'))
             player.set('items', defaultItems + ', ' + spaceitem[counter] + str(itemIDs[0]) + ', ' + str(itemIDs[1]) + ', ' + str(itemIDs[2]))
             counter += 1
-    
+
     players_xml.write(resourcepath + '/players.xml')
-    
+
     file = open("diversity_seed.txt", "w")
     file.write(dmseed)
-    
-            
+
+
     # make the graphics and install them
     # create gfx folder structure
     os.makedirs(resourcepath + '/gfx/ui/main menu/')
@@ -175,7 +175,7 @@ def installDiversityMod():
     characterimg.save(resourcepath + '/gfx/ui/main menu/charactermenu.png')
     titleimg.save(resourcepath + '/gfx/ui/main menu/titlemenu.png')
     splashimg.save(resourcepath + '/gfx/ui/main menu/splashes.png')
-    
+
     #Copy itempools.xml to resources and remove, soy/libra from pools when present in the start, and blood rights from pools when Isaac's heart is present
     shutil.copyfile(currentpath + '/resources/itempools.xml', resourcepath + '/itempools.xml')
     for x in range(0,3):
@@ -184,11 +184,11 @@ def installDiversityMod():
             delItemPool(304)
         if(itemIDs[x] == 276):
             delItemPool(186)
-    
+
     item_pools_xml.write(resourcepath + '/itempools.xml')
     # clear out the files
     shutil.copyfile(currentpath + '/resources/items.xml', resourcepath + '/items.xml')
-    
+
     os.makedirs(resourcepath + '/rooms/')
     shutil.copyfile(currentpath + '/resources/rooms/00.special rooms.stb', resourcepath + '/rooms/00.special rooms.stb')
     shutil.copyfile(currentpath + '/resources/rooms/04.catacombs.stb', resourcepath + '/rooms/04.catacombs.stb')
@@ -201,7 +201,7 @@ def installDiversityMod():
 
     # update gui stuffs
     dm.update_idletasks()
-    
+
     # if Rebirth is running, kill it (returns an ugly error if Rebirth is not running, but just ignore it I guess)
 #    try:
     #    print("Attempting to kill Isaac ...\n")
@@ -221,7 +221,7 @@ def installDiversityMod():
         call(resourcepath + '/../isaac-ng.exe')
 #    except OSError:
 #        print("Starting Rebirth failed.\nPress Enter to close.")
-    
+
 def closeDiversityMod():
     # remove all the files and folders EXCEPT packed and dmtmpfolder
     for resourcefile in os.listdir(resourcepath):
@@ -230,7 +230,7 @@ def closeDiversityMod():
                 os.unlink(os.path.join(resourcepath, resourcefile))
             elif os.path.isdir(os.path.join(resourcepath, resourcefile)):
                 shutil.rmtree(os.path.join(resourcepath, resourcefile))
-                
+
     # copy all the files and folders EXCEPT the 'packed' folder to dmtmpfolder
     for dmtmpfile in os.listdir(os.path.join(resourcepath, dmtmpfolder)):
         if os.path.isfile(os.path.join(resourcepath, dmtmpfolder, dmtmpfile)):
@@ -240,7 +240,7 @@ def closeDiversityMod():
     # remove the temporary directory we created
     shutil.rmtree(os.path.join(resourcepath, dmtmpfolder))
     sys.exit()
-    
+
 def setcustompath():
     # open file dialog
     isaacpath = askopenfilename()
@@ -266,7 +266,7 @@ def checkInstalled(*args):
 
 
 version = 1.00
-    
+
 # dm is the gui, entryseed is the rng seed, feedback is the message for user
 dm = Tk()
 entryseed = StringVar()
@@ -296,13 +296,13 @@ else: # if neither, then go through the motions of writing and saving a new path
     Button(dm, font = "font 12", text = "Navigate to isaac-ng.exe", command = setcustompath).grid(row = 2, pady = 10)
     Message(dm, justify = LEFT, font = "font 10", text = "Example:\nC:\Program Files (x86)\Steam\steamapps\common\The Binding of Isaac Rebirth\isaac-ng.exe", width = 800).grid(row = 3, padx = 15, pady = 10)
     mainloop()
-    
+
 # check if you're inside the resources path. give warning and close if necessary.
 if os.path.normpath(resourcepath).lower() in os.path.normpath(currentpath).lower():
     Message(dm, justify = CENTER, font = "font 12", text = "Diversity Mod is in your resources directory.\nMove it elsewhere before running.", width = 600).grid(row = 0, pady = 10)
     mainloop()
     sys.exit()
-    
+
 # create a menubar
 menubar = Menu(dm)
 dropmenu = Menu(menubar, tearoff = 0)
