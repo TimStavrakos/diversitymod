@@ -1,21 +1,20 @@
 import os, sys, shutil
 from cx_Freeze import setup, Executable
 
-build_exe_options = {"packages": ["os"], "excludes": ["tkinter"], 'includes': ['shutil','random','PIL','os','_winreg','Tkinter','ConfigParser','string','binascii','subprocess'] }
-
-base = None
-versionNum = '0.12'
+#build_exe_options = {"packages": ["os"], 'include_files': ['diversitymod files/']}
+#base = None
+versionNum = '1.00'
 installName = 'DiversityMod-' + versionNum
 
-if sys.platform == "win32":
-	base = "Win32GUI"
+#if sys.platform == "win32":
+#	base = "Win32GUI"
 installDir = 'target/' + installName + '/'
 	
-setup( name = "guifoo",
-		version = versionNum,
-		description = 'DiversityMod-' + versionNum,
-		options = {"build_exe": build_exe_options},
-		executables = [Executable("diversitymod.py", base=base)])
+#setup( name = "guifoo",
+#		version = versionNum,
+#		description = 'DiversityMod-' + versionNum,
+#		options = {"build_exe": build_exe_options},
+#		executables = [Executable("diversi.ymod.py", base=base)])
 
 
 shutil.copytree('dist/', installDir)

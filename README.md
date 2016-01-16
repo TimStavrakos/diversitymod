@@ -1,6 +1,6 @@
 Diversity Mod for The Binding of Isaac: Afterbirth
 -----------------------------------------------
-version 0.16
+version 1.00
 
 Created by DuneAught (twitter: @duneaught)
 with much help from awerush, Hyphenated, Inschato, pears, Zamiel & #isaac on SpeedRunsLive
@@ -50,7 +50,6 @@ The Diversity Mod program will not work if it is inside the Rebirth resources fo
 Known Issues
 ------------
 
-~~ * ctrl+a doesn't select all in the seed entry field, use ctrl+/ instead~~
 * The program is not currently compatible with Linux/Mac.
 * When the program closes unexpectedly, it leaves mod files installed. To fix, see: http://pastebin.com/mfreKXXT
 
@@ -92,82 +91,8 @@ Some passive items are EXCLUDED from the random starting items. Characters canno
 * 355 - Mom's Pearls
 * 428 - PJs
 
-##Removed in v0.14
-~~ ### Blue Baby Exclusions~~
 
-~~ * 62 - Charm of the Vampire~~
-~~ * 96 - Little C.H.A.D.~~
-~~ * 218 - Placenta~~
-~~ * 219 - Old Bandage~~
-~~ * 311 - Judas' Shadow~~
-~~ * 312 - Maggy's Bow~~
-~~ * 332 - Lazarus' Rags~~
-
-~~ ### Azazel Exclusions~~
-
-~~ * 3 - Spoon Bender~~
-~~ * 5 - My Reflection~~
-~~ * 20 - Transcendence~~
-~~ * 48 - Cupids Arrow~~
-~~ * 53 - Magneto~~
-~~ * 60 - The Ladder~~
-~~ * 68 - Technology~~
-~~ * 82 - Lord of the Pit~~
-~~ * 104 - The Parasite~~
-~~ * 115 - Ouija Board~~
-~~ * 118 - Brimstone~~
-~~ * 150 - Tough Love~~
-~~ * 159 - Spirit of the Night~~
-~~ * 179 - Fate~~
-~~ * 184 - Holy Grail~~
-~~ * 185 - Dead Dove~~
-~~ * 224 - Cricket's Body~~
-~~ * 229 - Monstro's Lung~~
-~~ * 245 - 20/20~~
-~~ * 306 - Sagittarius~~
-~~ * 317 - Mysterious Liquid~~
-~~ * 336 - Dead Onion~~
-
-~~ ### The Lost Exclusions~~
-
-~~ * 20 - Transcendence~~
-~~ * 60 - The Ladder~~
-~~ * 62 - Charm of the Vampire~~
-~~ * 96 - Little C.H.A.D.~~
-~~ * 98 - The Relic~~
-~~ * 108 - The Wafer~~
-~~ * 117 - Dead Bird~~
-~~ * 142 - Scapular~~
-~~ * 148 - Infestation~~
-~~ * 156 - Habit~~
-~~ * 157 - Blood Lust~~
-~~ * 161 - Ankh~~
-~~ * 162 - Celtic Cross~~
-~~ * 173 - Mitre~~
-~~ * 178 - Holy Water~~
-~~ * 180 - The Black Bean~~
-~~ * 204 - Fanny Pack~~
-~~ * 205 - Sharp Plug~~
-~~ * 211 - Spiderbaby~~
-~~ * 214 - Anemic~~
-~~ * 218 - Placenta~~
-~~ * 219 - Old Bandage~~
-~~ * 225 - Gimpy~~
-~~ * 227 - Piggy Bank~~
-~~ * 262 - Missing page 2~~
-~~ * 274 - Best Bud~~
-~~ * 278 - Dark Bum~~
-~~ * 311 - Judas' Shadow~~
-~~ * 312 - Maggy's Bow~~
-~~ * 327 - The Polaroid~~
-~~ * 328 - The Negative~~
-~~ * 332 - Lazarus' Rags~~
-
-~~ ### Lilith Exclusions(incomplete)~~
-
-~~ * 244 - Tech .5~~
-
-History
--------
+Version History
+---------------
 
 For full version history, see: https://github.com/TimStavrakos/diversitymod/releases
