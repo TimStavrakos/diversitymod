@@ -1,6 +1,7 @@
 import shutil, os, ConfigParser
 import xml.etree.ElementTree as ET
 import time
+import psutil
 from string import ascii_uppercase, digits
 from Tkinter import *
 from tkFileDialog import askopenfilename
@@ -57,7 +58,7 @@ def delItemPool(id):
 			for item in xmlPool:
 				if item.attrib['Id'] == id:
 					xmlPool.remove(item)
-					
+
 
 
 def selectall(event = None):
@@ -113,47 +114,7 @@ def installDiversityMod():
 		
 	
 	
-	#Commented out Character exclusions
-	
-	
-	#for x in range(6, 9): # cain
-	#	if itemIDs[x] == 46:
-	#		itemIDs.append(itemIDs[x])
-	#		del itemIDs[x]
-	#for x in range(12, 15): # blue baby
-	#	while itemIDs[x] in [62, 96, 218, 219, 311, 312, 332]:
-	#		itemIDs.append(itemIDs[x])
-	#		del itemIDs[x]
-	#for x in range(15, 18): # eve
-	#	while itemIDs[x] in [122, 117]:
-	#		itemIDs.append(itemIDs[x])
-	#		del itemIDs[x]
-	#for x in range(18, 21): # samson
-	#	if itemIDs[x] == 157:
-	#		itemIDs.append(itemIDs[x])
-	#		del itemIDs[x]
-	#for x in range(21, 24): # azazel
-	#	while itemIDs[x] in [3, 5, 20, 48, 53, 60, 68, 82, 104, 115, 118, 150, 159, 179, 184, 185, 224, 229, 245, 306, 317, 336]:
-	#		itemIDs.append(itemIDs[x])
-	#		del itemIDs[x]
-	#for x in range(24, 27): # lazarus
-	#	if itemIDs[x] == 332:
-	#		itemIDs.append(itemIDs[x])
-	#		del itemIDs[x]
-	#for x in range(30, 33): # the lost
-	#	while itemIDs[x] in [20, 60, 62, 96, 98, 108, 117, 142, 148, 156, 157, 161, 162, 173, 178, 180, 204, 205, 211, 214, 218, 219, 225, 227, 262, 274, 278, 311, 312, 327, 328, 332]:
-	#		itemIDs.append(itemIDs[x])
-	#		del itemIDs[x]
-	#for x in range(33,36): #lilith
-	#	while itemIDs[x] in [244]:
-	#		itemIDs.append(itemIDs[x])
-	#		del itemIDs[x]
-	#for x in range(36, 39): #keeper
-	#	while itemIDs[x] in [2]:
-	#		itemIDs.append(itemIDs[x])
-	#		del itemIDs[x]
-	
-	
+
 
 	# clear out the files
 	# remove all the files and folders EXCEPT packed and dmtmpfolder
@@ -203,11 +164,11 @@ def installDiversityMod():
 	w, h = characterdraw.textsize("Diversity Mod v" + str(version) + " Seed", font = smallfont)
 	w2, h2 = characterdraw.textsize(str(entryseed.get()), font = largefont)
 	w3, h3 = characterdraw.textsize("(random)", font = smallfont)
-	characterdraw.text((240-w/2, 31), "Diversity Mod v" + str(version) + " Seed", (54, 47, 45), font = smallfont)
-	characterdraw.text((240-w2/2, 41), str(entryseed.get()), (54, 47, 45), font = largefont)
+	characterdraw.text((240-w/2, 21), "Diversity Mod v" + str(version) + " Seed", (54, 47, 45), font = smallfont)
+	characterdraw.text((240-w2/2, 31), str(entryseed.get()), (54, 47, 45), font = largefont)
 	try:
 		if entryseed.get() == seedIsRNG:
-			characterdraw.text((240-w3/2, 59), "(random)", (54, 47, 45), font = smallfont)
+			characterdraw.text((240-w3/2, 49), "(random)", (54, 47, 45), font = smallfont)
 	except NameError:
 		print 'error?'
 	titledraw.text((435,240), "v" + str(version), (54, 47, 45), font = largefont)
@@ -243,10 +204,12 @@ def installDiversityMod():
 	
 	# if Rebirth is running, kill it (returns an ugly error if Rebirth is not running, but just ignore it I guess)
 #	try:
-#		print("Attempting to kill Isaac ...\n")
-	call(['taskkill', '/im', 'isaac-ng.exe', '/f'])
+	#	print("Attempting to kill Isaac ...\n")
+	for p in psutil.process_iter():
+		if p.name() == 'isaac-ng.exe':
+			call(['taskkill', '/im', 'isaac-ng.exe', '/f'])
 #	except OSError:
-#		print("There was an error closing Rebirth.")
+	#	print("There was an error closing Rebirth.")
 
 	# re/start Rebirth
 #	try:
