@@ -227,8 +227,10 @@ def installDiversityMod():
 
     os.makedirs(resourcepath + '/rooms/')
     for files in os.listdir(currentpath + '/resources/rooms'):
-            shutil.copyfile(currentpath + '/resources/rooms/' + str(files), resourcepath + '/rooms/' + str(files))
-
+        try:
+            shutil.copyfile(currentpath + '/resources/rooms/' + files, resourcepath + '/rooms/' + files)
+        except exception, e:
+            print "Error copying file " + files + ":" + e
 
 
     # update gui stuffs
@@ -245,7 +247,7 @@ def installDiversityMod():
 
     # re/start Rebirth
 #    try:
-    if os.path.exists(resourcepath+"/../../../../steam.exe"):
+    if os.path.exists(resourcepath + "/../../../../steam.exe"):
 #            print("Found steam ...")
         call([resourcepath + '/../../../../steam.exe', '-applaunch', '250900'])
     elif os.path.exists(resourcepath + "/../isaac-ng.exe"):
