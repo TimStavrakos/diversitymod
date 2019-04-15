@@ -4,6 +4,7 @@ version 1.00
 
 Created by DuneAught (twitter: @duneaught)
 with much help from awerush, Hyphenated, Inschato, pears, Zamiel & #isaac on SpeedRunsLive
+
 Updated to Afterbirth compatibility by InvaderTim
 
 To play The Binding of Isaac: Afterbirth with Diversity Mod, just run diversitymod.exe. You do not have to move any files or uninstall other mods.
@@ -63,7 +64,7 @@ Open directory in console.
 
 In console, type: "pyinstaller.exe --onefile --windowed diversitymod.py"
 
-Run seup.py.
+Run setup.py.
 
 
 Random Passive Starting Items
